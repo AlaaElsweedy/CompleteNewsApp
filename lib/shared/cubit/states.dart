@@ -33,3 +33,5 @@ class AppGetScienceWrongState extends AppStates {
 
   AppGetScienceWrongState(this.error);
 }
+
+class AppChangeThemeState extends AppStates {}

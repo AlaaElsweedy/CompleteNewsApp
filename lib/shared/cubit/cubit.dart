@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/modules/business/business_screen.dart';
 import 'package:news_app/modules/science/science_screen.dart';
-import 'package:news_app/modules/settings/settings_screen.dart';
 import 'package:news_app/modules/sports/sports_screen.dart';
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
@@ -18,14 +17,12 @@ class AppCubit extends Cubit<AppStates> {
     BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Business'),
     BottomNavigationBarItem(icon: Icon(Icons.sports), label: 'Sports'),
     BottomNavigationBarItem(icon: Icon(Icons.science), label: 'Science'),
-    BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
   ];
 
   List<Widget> pages = [
     BusinessScreen(),
     SportsScreen(),
     ScienceScreen(),
-    SettingsScreen(),
   ];
 
   int currentIndex = 0;
@@ -109,5 +106,12 @@ class AppCubit extends Cubit<AppStates> {
     } else {
       emit(AppGetScienceSuccessState());
     }
+  }
+
+  bool isDark = false;
+
+  void changeModeTheme() {
+    isDark = !isDark;
+    emit(AppChangeThemeState());
   }
 }
