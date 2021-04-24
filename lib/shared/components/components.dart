@@ -18,9 +18,13 @@ Widget buildNewsItem({@required dynamic article, context}) => InkWell(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: NetworkImage(
-                    '${article['urlToImage']}',
-                  ),
+                  image: article['urlToImage'] != null
+                      ? NetworkImage(
+                          '${article['urlToImage']}',
+                        )
+                      : NetworkImage(
+                          'https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
+                        ),
                   fit: BoxFit.cover,
                 ),
               ),
