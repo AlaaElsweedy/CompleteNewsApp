@@ -60,7 +60,11 @@ Widget buildNewsItem({@required dynamic article, context}) => InkWell(
       ),
     );
 
-Widget articleBuilder(list) => ConditionalBuilder(
+Widget articleBuilder(
+  list, {
+  isSearch = false,
+}) =>
+    ConditionalBuilder(
       condition: list.length > 0,
       builder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
@@ -73,5 +77,6 @@ Widget articleBuilder(list) => ConditionalBuilder(
         ),
         itemCount: 10,
       ),
-      fallback: (context) => Center(child: CircularProgressIndicator()),
+      fallback: (context) =>
+          isSearch ? Container() : Center(child: CircularProgressIndicator()),
     );

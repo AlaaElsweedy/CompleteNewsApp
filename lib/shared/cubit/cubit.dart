@@ -45,7 +45,7 @@ class AppCubit extends Cubit<AppStates> {
       query: {
         'country': 'eg',
         'category': 'business',
-        'apiKey': '0e98155fd8f14281a4577ad87e09f4d0',
+        'apiKey': 'bb48161fe5a64786bb32fb7896e1b487',
       },
     ).then((value) {
       business = value.data['articles'];
@@ -68,7 +68,7 @@ class AppCubit extends Cubit<AppStates> {
         query: {
           'country': 'eg',
           'category': 'sports',
-          'apiKey': '0e98155fd8f14281a4577ad87e09f4d0',
+          'apiKey': 'bb48161fe5a64786bb32fb7896e1b487',
         },
       ).then((value) {
         sports = value.data['articles'];
@@ -94,7 +94,7 @@ class AppCubit extends Cubit<AppStates> {
         query: {
           'country': 'eg',
           'category': 'science',
-          'apiKey': '0e98155fd8f14281a4577ad87e09f4d0',
+          'apiKey': 'bb48161fe5a64786bb32fb7896e1b487',
         },
       ).then((value) {
         science = value.data['articles'];
@@ -121,5 +121,25 @@ class AppCubit extends Cubit<AppStates> {
         emit(AppChangeThemeState());
       });
     }
+  }
+
+  List<dynamic> search = [];
+
+  void getSearch(String value) {
+    emit(AppGetSearchCircularState());
+
+    DioHelper.getData(
+      url: 'v2/everything',
+      query: {
+        'q': '$value',
+        'apiKey': 'bb48161fe5a64786bb32fb7896e1b487',
+      },
+    ).then((value) {
+      search = value.data['articles'];
+      emit(AppGetSearchSuccessState());
+    }).catchError((onError) {
+      print(onError.toString());
+      emit(AppGetSearchWrongState(onError.toString()));
+    });
   }
 }

@@ -35,3 +35,13 @@ class AppGetScienceWrongState extends AppStates {
 }
 
 class AppChangeThemeState extends AppStates {}
+
+class AppGetSearchCircularState extends AppStates {}
+
+class AppGetSearchSuccessState extends AppStates {}
+
+class AppGetSearchWrongState extends AppStates {
+  final String error;
+
+  AppGetSearchWrongState(this.error);
+}

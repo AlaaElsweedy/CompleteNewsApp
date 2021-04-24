@@ -10,11 +10,7 @@ class WebViewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: WebView(
-        initialUrl: url == null
-            ? Scaffold.of(context).showBottomSheet(
-                (context) => Text('Url error'),
-              )
-            : url,
+        initialUrl: url,
       ),
     );
   }
